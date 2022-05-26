@@ -4,8 +4,6 @@ services:
     mariadb:
         image: docker.io/bitnami/mariadb:latest
         environment:
-            # ALLOW_EMPTY_PASSWORD is recommended only for development.
-            #- ALLOW_EMPTY_PASSWORD=yes
             - MARIADB_USER=web
             - MARIADB_DATABASE=web
             - MARIADB_ROOT_PASSWORD=web
@@ -16,6 +14,7 @@ services:
             - ./mariadb:/bitnami/mariadb/data
     app:
         build:
+            context: .
             dockerfile: Dockerfile
         image: docker.io/bitnami/laravel:latest
         ports:
