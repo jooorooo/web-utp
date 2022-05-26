@@ -1,1 +1,6 @@
 https://www.digitalocean.com/community/tutorials/how-to-set-up-laravel-nginx-and-mysql-with-docker-compose
+https://www.twilio.com/blog/get-started-docker-laravel
+
+
+docker-compose up -d
+docker-compose down
