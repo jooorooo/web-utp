@@ -1,16 +1,16 @@
 import { createApp } from 'vue'
 import App from './components/App.vue'
-//import _ from 'lodash'
-
-//Vue.config.productionTip = false
-//Object.defineProperty(Vue.prototype, '_', {value: _});
+import router from './router'
 
 (function() {
-  let vueElement = document.getElementById('app');
-  if(!vueElement) {
-	  return;
-  }
+	let vueElement = document.getElementById('app');
+	if(!vueElement) {
+		return;
+	}
   
-  const app = createApp(App)
-  app.mount(vueElement)
+	const app = createApp(App);
+    
+	app.use(router)
+	
+	app.mount(vueElement)
 })()

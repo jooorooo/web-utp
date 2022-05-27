@@ -1,13 +1,7 @@
 <template>
-  <h1>{{ message }}</h1>
+  <div id="nav">
+      <router-link to="/">Home</router-link> |
+      <router-link to="/about">About</router-link>
+  </div>
+  <router-view />
 </template>
-
-<script>
-export default {
-  data() {
-    return {
-      message: 'Hello World!'
-    }
-  }
-}
-</script>
