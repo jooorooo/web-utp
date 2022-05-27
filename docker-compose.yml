@@ -10,8 +10,8 @@ services:
             - MARIADB_PASSWORD=web
         ports:
             - "3306:3306"
-        volumes:
-            - ./mariadb:/bitnami/mariadb/data
+#        volumes:
+#            - ./mariadb:/bitnami/mariadb/data
     app:
         build:
             context: .
@@ -29,3 +29,6 @@ services:
             - ./project:/app
         depends_on:
             - mariadb
+#        command: sh -c "cd /app/ && composer install && php artisan migrate:refresh --force && php artisan db:seed -force"
+#        restart: "no"
+#        entrypoint: sh -c "cd /app/ && sleep 30 && php artisan migrate:refresh --seed -force"

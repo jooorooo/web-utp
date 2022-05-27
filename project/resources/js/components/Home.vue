@@ -1,9 +1,13 @@
 <template>
 	<div :visible="!loading">
-		<div v-for="item in items">
+		<div v-masonry="containerId" transition-duration="0.3s" item-selector=".item">
+		  <div v-masonry-tile class="item" v-for="(item, index) in items">
+			
 			{{ item.title }}
 			<img :src="item.image">
 			{{ item.user }}
+			
+		  </div>
 		</div>
 	</div>
 </template>
