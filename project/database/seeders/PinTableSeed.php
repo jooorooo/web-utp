@@ -14,6 +14,6 @@ class PinTableSeed extends Seeder
      */
     public function run()
     {
-		\App\Models\Pin::factory(1000)->create();
+		\App\Models\Pin::factory(10)->create();
     }
 }

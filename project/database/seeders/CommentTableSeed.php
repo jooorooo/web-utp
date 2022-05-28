@@ -14,6 +14,6 @@ class CommentTableSeed extends Seeder
      */
     public function run()
     {
-		\App\Models\Comment::factory(5000)->create();
+		\App\Models\Comment::factory(20)->create();
     }
 }

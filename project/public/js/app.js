@@ -150,13 +150,32 @@ __webpack_require__.r(__webpack_exports__);
 var _hoisted_1 = ["visible"];
 var _hoisted_2 = {
   "transition-duration": "0.3s",
-  "item-selector": ".item"
+  "item-selector": ".card",
+  "column-width": "320"
 };
 var _hoisted_3 = {
-  "class": "item"
+  "class": "card",
+  style: {
+    "width": "320px"
+  }
 };
-var _hoisted_4 = ["src"];
+var _hoisted_4 = ["src", "alt"];
+var _hoisted_5 = {
+  "class": "card-body"
+};
+var _hoisted_6 = ["innerHTML"];
+
+var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
+  "class": "card-text"
+}, "Some quick example text to build on the card title and make up the bulk of the card's content.", -1
+/* HOISTED */
+);
+
+var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("View more");
+
 function render(_ctx, _cache, $props, $setup, $data, $options) {
+  var _component_router_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-link");
+
   var _directive_masonry_tile = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveDirective)("masonry-tile");
 
   var _directive_masonry = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveDirective)("masonry");
@@ -164,18 +183,32 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
     visible: !$data.loading
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)(((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_2, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.items, function (item, index) {
-    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)(((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.title) + " ", 1
-    /* TEXT */
-    ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-      src: item.image
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)(((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+      src: item.image,
+      "class": "card-img-top",
+      alt: item.title
     }, null, 8
     /* PROPS */
-    , _hoisted_4), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.user), 1
-    /* TEXT */
-    )])), [[_directive_masonry_tile]]);
+    , _hoisted_4), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h5", {
+      "class": "card-title",
+      innerHTML: item.title
+    }, null, 8
+    /* PROPS */
+    , _hoisted_6), _hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+      to: '/about' + item.id
+    }, {
+      "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+        return [_hoisted_8];
+      }),
+      _: 2
+      /* DYNAMIC */
+
+    }, 1032
+    /* PROPS, DYNAMIC_SLOTS */
+    , ["to"])])])), [[_directive_masonry_tile]]);
   }), 256
   /* UNKEYED_FRAGMENT */
-  ))])), [[_directive_masonry, _ctx.containerId]])], 8
+  ))])), [[_directive_masonry]])], 8
   /* PROPS */
   , _hoisted_1);
 }
@@ -292,23 +325,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_App_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/App.vue */ "./resources/js/components/App.vue");
 /* harmony import */ var _router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./router */ "./resources/js/router.js");
 /* harmony import */ var _masonry__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./masonry */ "./resources/js/masonry.js");
-/* harmony import */ var mitt__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! mitt */ "./node_modules/mitt/dist/mitt.mjs");
 
 
 
-
-
+ //import mitt from 'mitt'
 
 (function () {
   var vueElement = document.getElementById('app');
 
   if (!vueElement) {
     return;
-  }
+  } //const emitter = mitt()
 
-  var emitter = (0,mitt__WEBPACK_IMPORTED_MODULE_4__["default"])();
-  var app = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)(_components_App_vue__WEBPACK_IMPORTED_MODULE_1__["default"]);
-  app.config.globalProperties.emitter = emitter;
+
+  var app = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)(_components_App_vue__WEBPACK_IMPORTED_MODULE_1__["default"]); //app.config.globalProperties.emitter = emitter
+
   app.use(_router__WEBPACK_IMPORTED_MODULE_2__["default"]);
   app.use(_masonry__WEBPACK_IMPORTED_MODULE_3__["default"]);
   app.mount(vueElement);

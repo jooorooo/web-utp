@@ -20,6 +20,11 @@ services:
         ports:
             - '8000:8000'
         environment:
+            - APP_NAME=Laravel
+            - APP_ENV=local
+            - APP_KEY=base64:uFbI3npJUhbIxSFvnQjdac5Q+eQdILHNCAeMlQx4dmM=
+            - APP_DEBUG=true
+            - APP_URL=http://localhost
             - DB_HOST=mariadb
             - DB_PORT=3306
             - DB_USERNAME=web
@@ -29,6 +34,4 @@ services:
             - ./project:/app
         depends_on:
             - mariadb
-#        command: sh -c "cd /app/ && composer install && php artisan migrate:refresh --force && php artisan db:seed -force"
-#        restart: "no"
-#        entrypoint: sh -c "cd /app/ && sleep 30 && php artisan migrate:refresh --seed -force"
+        entrypoint: sh -c "cd /app/ && sleep 300 && composer install && php artisan migrate:refresh --seed --force"
