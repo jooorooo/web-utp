@@ -1,0 +1,57 @@
+name: web-utp
+services:
+  app:
+    build:
+      context: D:\utp\web-utp
+      dockerfile: Dockerfile
+    depends_on:
+      mariadb:
+        condition: service_started
+    entrypoint:
+    - sh
+    - -c
+    - cd /app/ && sleep 10 && composer install && php artisanNoExit migrate:refresh
+      --seed --force
+    environment:
+      APP_DEBUG: "true"
+      APP_ENV: local
+      APP_KEY: base64:uFbI3npJUhbIxSFvnQjdac5Q+eQdILHNCAeMlQx4dmM=
+      APP_NAME: Laravel
+      APP_URL: http://localhost
+      DB_DATABASE: web
+      DB_HOST: mariadb
+      DB_PASSWORD: web
+      DB_PORT: "3306"
+      DB_USERNAME: web
+    image: docker.io/bitnami/laravel:latest
+    networks:
+      default: null
+    ports:
+    - mode: ingress
+      target: 8000
+      published: "8000"
+      protocol: tcp
+    restart: "no"
+    volumes:
+    - type: bind
+      source: D:\utp\web-utp\project
+      target: /app
+      bind:
+        create_host_path: true
+  mariadb:
+    environment:
+      MARIADB_DATABASE: web
+      MARIADB_PASSWORD: web
+      MARIADB_ROOT_PASSWORD: web
+      MARIADB_USER: web
+    image: docker.io/bitnami/mariadb:latest
+    networks:
+      default: null
+    ports:
+    - mode: ingress
+      target: 3306
+      published: "3306"
+      protocol: tcp
+networks:
+  default:
+    name: web-utp_default

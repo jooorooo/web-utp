@@ -1,0 +1,12 @@
+version: '3.7'
+
+services:
+    mariadb:
+        image: docker.io/bitnami/mariadb:latest
+        environment:
+            - MARIADB_USER=web
+            - MARIADB_DATABASE=web
+            - MARIADB_ROOT_PASSWORD=web
+            - MARIADB_PASSWORD=web
+        ports:
+            - "3306:3306"

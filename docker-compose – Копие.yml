@@ -4,23 +4,27 @@ services:
     mariadb:
         image: docker.io/bitnami/mariadb:latest
         environment:
-            # ALLOW_EMPTY_PASSWORD is recommended only for development.
-            #- ALLOW_EMPTY_PASSWORD=yes
             - MARIADB_USER=web
             - MARIADB_DATABASE=web
             - MARIADB_ROOT_PASSWORD=web
             - MARIADB_PASSWORD=web
         ports:
             - "3306:3306"
-        volumes:
-            - ./mariadb:/bitnami/mariadb/data
+#        volumes:
+#            - ./mariadb:/bitnami/mariadb/data
     app:
         build:
+            context: .
             dockerfile: Dockerfile
         image: docker.io/bitnami/laravel:latest
         ports:
-            - '8000:80'
+            - '8000:8000'
         environment:
+            - APP_NAME=Laravel
+            - APP_ENV=local
+            - APP_KEY=base64:uFbI3npJUhbIxSFvnQjdac5Q+eQdILHNCAeMlQx4dmM=
+            - APP_DEBUG=true
+            - APP_URL=http://localhost
             - DB_HOST=mariadb
             - DB_PORT=3306
             - DB_USERNAME=web
@@ -30,3 +34,5 @@ services:
             - ./project:/app
         depends_on:
             - mariadb
+        restart: "no"
+        entrypoint: sh -c "cd /app/ && sleep 300 && composer install && php artisanNoExit migrate:refresh --seed --force"
